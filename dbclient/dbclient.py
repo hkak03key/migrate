@@ -179,6 +179,8 @@ class dbclient:
         acls_list = []
         current_owner = ''
         for member in full_acl_list:
+            if member.get('all_permissions')[0].get('inherited'):
+                continue
             permissions = member.get('all_permissions')[0].get('permission_level')
             if 'user_name' in member:
                 acls_list.append({'user_name': member.get('user_name'),
